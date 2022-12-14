@@ -238,6 +238,7 @@ module.exports = async (sock, msg) => {
 
 		// Downloader //
 		case 'ytplay':
+		case 'play':
 			if (args.length == 0) return await reply(`Example: ${prefix + command} melukis senja`)
 			axios
 				.get(`https://api.lolhuman.xyz/api/ytsearch?apikey=${apikey}&query=${full_args}`)
@@ -652,6 +653,18 @@ module.exports = async (sock, msg) => {
 				text += `==============================\n`
 				text += `\`\`\`Pertanyaan :\`\`\`\n${x.question.content}\n\n`
 				text += `\`\`\`Jawaban :\`\`\`\n${x.answer[0].content}\n`
+				text += `==============================\n\n`
+			}
+			reply(text)
+			break
+		case 'robotguru':
+			if (args.length == 0) return reply(`Example: ${prefix + command} siapakah sukarno`)
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/roboguru?apikey=${apikey}&query=${full_args}&grade=smp&subject=sejarah`)
+			var text = 'Beberapa Pembahasan Dari RobotGuru :\n\n'
+			for (var x of data.result) {
+				text += `==============================\n`
+				text += `\`\`\`Pertanyaan :\`\`\`\n${x.question}\n\n`
+				text += `\`\`\`Jawaban :\`\`\`\n${x.answer[0]}\n`
 				text += `==============================\n\n`
 			}
 			reply(text)
@@ -1205,8 +1218,8 @@ module.exports = async (sock, msg) => {
 			}
 			if (command === 'stickerwm') {
 				url = `https://api.lolhuman.xyz/api/convert/towebpauthor?apikey=${apikey}`
-				form.append('package', 'LoL')
-				form.append('author', 'Human')
+				form.append('package', 'AXV')
+				form.append('author', 'DIGITAL')
 			}
 
 			axios
@@ -1283,7 +1296,7 @@ module.exports = async (sock, msg) => {
 			})
 			break
 		case 'stalkgithub':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL-Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			axios.get(`https://api.lolhuman.xyz/api/github/${args[0]}?apikey=${apikey}`).then(({ data }) => {
 				var caption = `Name : ${data.result.name}\n`
 				caption += `Link : ${data.result.url}\n`
@@ -1325,15 +1338,15 @@ module.exports = async (sock, msg) => {
 
 		// Other
 		case 'ssweb':
-			if (args.length == 0) return reply(`Example: ${prefix + command} https://api.lolhuman.xyz`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} https://axvdigital.com`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ssweb?apikey=${apikey}&url=${args[0]}` } })
 			break
 		case 'ssweb2':
-			if (args.length == 0) return reply(`Example: ${prefix + command} https://api.lolhuman.xyz`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} https://axvdigital.com`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/sswebfull?apikey=${apikey}&url=${args[0]}` } })
 			break
 		case 'shortlink':
-			if (args.length == 0) return reply(`Example: ${prefix + command} https://api.lolhuman.xyz`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} https://axvdigital.com`)
 			axios.get(`https://api.lolhuman.xyz/api/ouoshortlink?apikey=${apikey}&url=${args[0]}`).then(({ data }) => {
 				reply(data.result)
 			})
@@ -1548,7 +1561,7 @@ module.exports = async (sock, msg) => {
 			break
 		default:
 			if (isCmd) {
-				reply(`Sorry bre, command *${prefix}${command}* gk ada di list *${prefix}help*`)
+				reply(`Sorry bre, command *${prefix}${command}* gak ada di menu.*`)
 			}
 			break
 	}
