@@ -12,6 +12,8 @@ exports.help = (prefix) => {
 
 *┏━──✪[ _MENU_ ]✪──╮*
 *┃➥ ${prefix}owner*
+*┃➥ ${prefix}brainly*
+*┃➥ ${prefix}robotguru*
 *┃➥ ${prefix}listsurah*
 *┃➥ ${prefix}alquran*
 *┃➥ ${prefix}alquranaudio*
