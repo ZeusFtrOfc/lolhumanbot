@@ -664,7 +664,7 @@ module.exports = async (sock, msg) => {
 			for (var x of data.result) {
 				text += `==============================\n`
 				text += `\`\`\`Pertanyaan :\`\`\`\n${x.question}\n\n`
-				text += `\`\`\`Jawaban :\`\`\`\n${x.answer[0]}\n`
+				text += `\`\`\`Jawaban :\`\`\`\n${x.answer}\n`
 				text += `==============================\n\n`
 			}
 			reply(text)
