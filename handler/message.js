@@ -1117,7 +1117,7 @@ module.exports = async (sock, msg) => {
 
 		// Primbon
 		case 'artinama':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			axios.get(`https://api.lolhuman.xyz/api/artinama?apikey=${apikey}&nama=${full_args}`).then(({ data }) => {
 				reply(data.result)
 			})
@@ -1150,7 +1150,7 @@ module.exports = async (sock, msg) => {
 			})
 			break
 		case 'tebakumur':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			axios.get(`https://api.lolhuman.xyz/api/tebakumur?apikey=${apikey}&name=${full_args}`).then(({ data }) => {
 				var text = `Nama : ${data.result.name}\n`
 				text += `Umur : ${data.result.age}`
@@ -1457,7 +1457,7 @@ module.exports = async (sock, msg) => {
 		case 'summersand':
 		case 'horrorblood':
 		case 'thunder':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/textprome/${command}?apikey=${apikey}&text=${full_args}` } })
 			break
 
@@ -1471,7 +1471,7 @@ module.exports = async (sock, msg) => {
 		case 'wolflogo':
 		case 'steel3d':
 		case 'wallgravity':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/textprome2/${command}?apikey=${apikey}&text1=${args[0]}&text2=${args[1]}` } })
 			break
 
@@ -1500,7 +1500,7 @@ module.exports = async (sock, msg) => {
 		case 'flamming':
 		case 'harrypotter':
 		case 'carvedwood':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/photooxy1/${command}?apikey=${apikey}&text=${full_args}` } })
 			break
 
@@ -1508,7 +1508,7 @@ module.exports = async (sock, msg) => {
 		case 'arcade8bit':
 		case 'battlefield4':
 		case 'pubg':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/photooxy2/${command}?apikey=${apikey}&text1=${args[0]}&text2=${args[1]}` } })
 			break
 
@@ -1543,12 +1543,12 @@ module.exports = async (sock, msg) => {
 		case 'goldplaybutton':
 		case 'silverplaybutton':
 		case 'freefire':
-			if (args.length == 0) return reply(`Example: ${prefix + command} LoL Human`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${apikey}&text=${text}` } })
 			break
 		default:
 			if (isCmd) {
-				reply(`Sorry bro, command *${prefix}${command}* gk ada di list *${prefix}help*`)
+				reply(`Sorry bre, command *${prefix}${command}* gk ada di list *${prefix}help*`)
 			}
 			break
 	}
