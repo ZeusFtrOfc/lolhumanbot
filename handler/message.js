@@ -151,6 +151,7 @@ module.exports = async (sock, msg) => {
 			})
 			break
 		case 'help':
+		case 'menu':
 			reply(help(prefix))
 			break
 
