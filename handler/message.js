@@ -291,7 +291,7 @@ module.exports = async (sock, msg) => {
 					var caption = `❖ Title    : *${data.result.title}*\n`
 					caption += `❖ Size     : *${data.result.size}*`
 					sock.sendMessage(from, { image: { url: data.result.thumbnail }, caption }).then(() => {
-						sock.sendMessage(from, { audio: { url: data.result.link }, mimetype: 'video/mp4', fileName: `${data.result.title}.mp4` })
+						sock.sendMessage(from, { video: { url: data.result.link }, mimetype: 'video/mp4', fileName: `${data.result.title}.mp4` })
 					})
 				})
 				.catch(console.error)
@@ -658,8 +658,10 @@ module.exports = async (sock, msg) => {
 			reply(text)
 			break
 		case 'robotguru':
-			if (args.length == 0) return reply(`Example: ${prefix + command} siapakah sukarno`)
-			var { data } = await axios.get(`https://api.lolhuman.xyz/api/roboguru?apikey=${apikey}&query=${full_args}&grade=smp&subject=sejarah`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} siapakah sukarno|sma|sejarah`)
+			var text1 = full_args.split('|')[0].trim()
+			var text2 = full_args.split('|')[1].trim()
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/roboguru?apikey=${apikey}&query=${full_args}&grade=${text1}&subject=${text2}`)
 			var text = 'Beberapa Pembahasan Dari RobotGuru :\n\n'
 			for (var x of data.result) {
 				text += `==============================\n`
@@ -1375,7 +1377,6 @@ module.exports = async (sock, msg) => {
 		case 'blowjob':
 		case 'yaoi':
 		case 'ecchi':
-		case 'hentai':
 		case 'ahegao':
 		case 'hololewd':
 		case 'sideoppai':
@@ -1391,7 +1392,9 @@ module.exports = async (sock, msg) => {
 		case 'hentai4everyone':
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${apikey}` } })
 			break
-
+		case 'hentai':
+				sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/random2/nsfw/hentai?apikey=${apikey}` } })
+				break
 		case 'bj':
 		case 'ero':
 		case 'cum':
