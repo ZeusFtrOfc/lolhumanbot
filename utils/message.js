@@ -7,7 +7,7 @@ exports.help = (prefix) => {
 *┏━──✪[ _INFORMATION_ ]✪──╮*
 *┃➥ AUTHOR : AXV*
 *┃➥ WEBSITE : https://axvdigital.com*
-*┃➥ _HAVE FUN BREE..._*
+*┃➥ _HAVE FUN BREE :)..._*
 *┗━───────────────╯*
 
 *┏━──✪[ _MENU_ ]✪──╮*
