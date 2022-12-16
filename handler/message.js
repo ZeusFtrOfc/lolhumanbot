@@ -1136,7 +1136,7 @@ module.exports = async (sock, msg) => {
 			})
 			break
 		case 'jodoh':
-			if (args.length == 0) return reply(`Example: ${prefix + command} Tahu & Bacem`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} A & V`)
 			axios.get(`https://api.lolhuman.xyz/api/jodoh/${full_args.split('&')[0]}/${full_args.split('&')[1]}?apikey=${apikey}`).then(({ data }) => {
 				var text = `Positif : ${data.result.positif}\n`
 				text += `Negative : ${data.result.negatif}\n`
@@ -1560,9 +1560,12 @@ module.exports = async (sock, msg) => {
 			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${apikey}&text=${text}` } })
 			break
+		case 'wtb':
+		case 'wts':
+			break
 		default:
 			if (isCmd) {
-				reply(`Sorry bre, command *${prefix}${command}* gak ada di menu.*`)
+				reply(`Sorry bre, Command *${prefix}${command}* gak ada di menu.*`)
 			}
 			break
 	}
