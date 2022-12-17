@@ -658,8 +658,8 @@ module.exports = async (sock, msg) => {
 			reply(text)
 			break
 		case 'robotguru':
-			if (args.length == 0) return reply(`Example: ${prefix + command} siapakah sukarno|sma|sejarah`)
-			var { data } = await axios.get(`https://api.lolhuman.xyz/api/roboguru?apikey=${apikey}&query=${full_args}&grade=sma&subject=sejarah`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} siapakah sukarno sma sejarah`)
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/roboguru?apikey=${apikey}&query=${args[0]}&grade=${args[1]}&subject=${args[2]}`)
 			var text = 'Beberapa Pembahasan Dari RobotGuru :\n\n'
 			for (var x of data.result) {
 				text += `==============================\n`
@@ -774,16 +774,16 @@ module.exports = async (sock, msg) => {
 			init_txt += `Pronunciation : ${data.result.pronunciation}\n`
 			reply(init_txt)
 			break
-		case 'brainly':
-			if (args.length == 0) return reply(`Example: ${prefix + command} Soekarno adalah`)
-			var { data } = await axios.get(`https://api.lolhuman.xyz/api/brainly?apikey=${apikey}&query=${full_args}`)
-			var text = 'Result : \n'
-			for (var x of data.result) {
-				text += `${x.title}\n`
-				text += `${x.url}\n\n`
-			}
-			reply(text)
-			break
+		// case 'brainly':
+		// 	if (args.length == 0) return reply(`Example: ${prefix + command} Soekarno adalah`)
+		// 	var { data } = await axios.get(`https://api.lolhuman.xyz/api/brainly?apikey=${apikey}&query=${full_args}`)
+		// 	var text = 'Result : \n'
+		// 	for (var x of data.result) {
+		// 		text += `${x.title}\n`
+		// 		text += `${x.url}\n\n`
+		// 	}
+		// 	reply(text)
+		// 	break
 		case 'jadwaltv':
 			if (args.length == 0) return reply(`Example: ${prefix + command} RCTI`)
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/jadwaltv/${args[0]}?apikey=${apikey}`)
@@ -1155,7 +1155,7 @@ module.exports = async (sock, msg) => {
 			})
 			break
 		case 'jadian':
-			if (args.length == 0) return reply(`Example: ${prefix + command} 12 12 2020`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} 03 01 2007`)
 			axios.get(`https://api.lolhuman.xyz/api/jadian/${args[0]}/${args[1]}/${args[2]}?apikey=${apikey}`).then(({ data }) => {
 				var text = `Karakteristik : ${data.result.karakteristik}\n`
 				text += `Deskripsi : ${data.result.deskripsi}`
@@ -1234,6 +1234,8 @@ module.exports = async (sock, msg) => {
 			break
 		case 'sticker':
 		case 's':
+		case 'stiker':
+		case 'stic':
 			if (!(isImage || isQuotedImage || isVideo || isQuotedVideo)) return reply(`Kirim media dengan caption ${prefix + command} atau tag media yang sudah dikirim`)
 			var stream = await downloadContentFromMessage(msg.message[mediaType], mediaType.replace('Message', ''))
 			let stickerStream = new PassThrough()
@@ -1474,6 +1476,25 @@ module.exports = async (sock, msg) => {
 			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/textprome/${command}?apikey=${apikey}&text=${full_args}` } })
 			break
+		case 'ramadhan':
+		case 'amongus':
+		case 'badboy':
+		case 'badgirl':
+		case 'bucinserti':
+		case 'carbon':
+		case 'tweettrump':
+		case 'fuckboy':
+		case 'fuckgirl':
+		case 'goodboy':
+		case 'goodgirl':
+		case 'idulfitri':
+		case 'nulis':
+		case 'qrcode':
+		case 'quotemaker':
+		case 'toloserti':
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/${command}?apikey=${apikey}&text=${full_args}` } })
+			break
 
 		case 'pornhub':
 		case 'glitch':
@@ -1522,7 +1543,7 @@ module.exports = async (sock, msg) => {
 		case 'arcade8bit':
 		case 'battlefield4':
 		case 'pubg':
-			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV FOREVER`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/photooxy2/${command}?apikey=${apikey}&text1=${args[0]}&text2=${args[1]}` } })
 			break
 
@@ -1557,9 +1578,41 @@ module.exports = async (sock, msg) => {
 		case 'goldplaybutton':
 		case 'silverplaybutton':
 		case 'freefire':
+		case 'mlwall':
+		case 'fpslogo':
+		case 'lolbanner':
+		case 'valorantbanner':
+		case 'realvintage':
+		case 'anonymhacker':
+		case 'cartoongravity':
 			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
-			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${apikey}&text=${text}` } })
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${apikey}&text=${args[0]}`} })
 			break
+		case 'affect':
+		case 'beautiful':
+		case 'facepalm':
+		case 'hitler':
+		case 'jail':
+		case 'jokeOverHead':
+		case 'rainbow':
+		case 'rip':
+		case 'sepia':
+		case 'trash':
+		case 'wanted':
+				if (!isImage && !isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix + command} atau tag gambar yang sudah dikirim`)
+				var url = `https://api.lolhuman.xyz/api/creator1/${command}?apikey=${apikey}`
+				var form = new FormData()
+				form.append('img', stream, 'tahu.jpg')
+				if (command === 'removebg') {
+					url = `https://api.lolhuman.xyz/api/removebg?apikey=${apikey}`
+				}
+				axios
+					.post(url, form, { responseType: 'arraybuffer' })
+					.then(({ data }) => {
+						sock.sendMessage(from, { image: data })
+					})
+					.catch(console.error)
+				break
 		case 'wtb':
 		case 'wts':
 			break
