@@ -247,7 +247,7 @@ module.exports = async (sock, msg) => {
 						var caption = `❖ Title    : *${data.result.title}*\n`
 						caption += `❖ Size     : *${data.result.size}*`
 						sock.sendMessage(from, { image: { url: data.result.thumbnail }, caption }).then(() => {
-							sock.sendMessage(from, { audio: { url: data.result.link }, mimetype: 'audio/mp4', fileName: `${data.result.title}.mp3`, ptt: true })
+							sock.sendMessage(from, { audio: { url: data.result.link }, mimetype: 'audio/mp4', fileName: `${data.result.title}.mp3`, ptt: false })
 						})
 					})
 				})
@@ -884,6 +884,13 @@ module.exports = async (sock, msg) => {
 			text += `Meninggal : ${data.result.meninggal}`
 			reply(text)
 			break
+		case 'openai':
+			if (args.length == 0) return reply(`Example: ${prefix + command} apa itu AI?`)
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/openai?apikey=${apikey}&text=${args[0]}`)
+			var text = `${data.result}`
+			reply(text)
+			break
+		
 		case 'covidglobal':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/corona/global?apikey=${apikey}`)
 			var text = `Positif : ${data.result.positif}\n`
@@ -1232,6 +1239,18 @@ module.exports = async (sock, msg) => {
 				})
 				.catch(console.error)
 			break
+		// case prefix + 'stikerwa':
+		// 			if (args.length == 0) return axv.reply(from, `Fitur untuk mencari Stiker Whatsapp  gunakan ${prefix + command} nama stiker jumlah\nContoh: ${prefix + command} aesthetic 3`, id)
+		// 			try {
+		// 				const weswxa4 = await axios.get(`https://api.lolhuman.xyz/api/stickerwa?apikey=${args[0]}&query=${args[1]}`)
+		// 				const weswxa5 = weswxa4.data.result[0].stickers
+		// 				if (weswxa3 > 10) return axv.reply(from, `Maksimal 10 sticker!`, id)
+		// 				for (let i = 0; i < weswxa3; i++) {
+		// 					sock.sendMessage(from, { sticker: { 'weswxa5[i]' } })
+		// 			} .catch (err) {
+		// 				console.log(err)
+		// 			}
+		// 			break 
 		case 'sticker':
 		case 's':
 		case 'stiker':
@@ -1371,6 +1390,10 @@ module.exports = async (sock, msg) => {
 		case 'quotesimage':
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/random/${command}?apikey=${apikey}` } })
 			break
+		case 'darkjoke':
+		case 'memeindo':
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/meme/${command}?apikey=${apikey}` } })
+			break
 
 		case 'chiisaihentai':
 		case 'trap':
@@ -1478,24 +1501,30 @@ module.exports = async (sock, msg) => {
 			break
 		case 'ramadhan':
 		case 'amongus':
-		case 'badboy':
-		case 'badgirl':
-		case 'bucinserti':
 		case 'carbon':
 		case 'tweettrump':
-		case 'fuckboy':
-		case 'fuckgirl':
-		case 'goodboy':
-		case 'goodgirl':
 		case 'idulfitri':
 		case 'nulis':
 		case 'qrcode':
 		case 'quotemaker':
-		case 'toloserti':
 			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/${command}?apikey=${apikey}&text=${full_args}` } })
 			break
-
+		case 'carbon':
+			if (args.length == 0) return reply(`Example: ${prefix + command} print("axv") python`)
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/${command}?apikey=${apikey}&text=${args[0]}&language=${args[1]}` } })
+			break
+		case 'fuckboy':
+		case 'fuckgirl':
+		case 'goodboy':
+		case 'goodgirl':
+		case 'badboy':
+		case 'badgirl':
+		case 'bucinserti':
+		 case 'toloserti':
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/${command}?apikey=${apikey}&name=${full_args}` } })
+			break
 		case 'pornhub':
 		case 'glitch':
 		case 'avenger':
@@ -1603,9 +1632,18 @@ module.exports = async (sock, msg) => {
 				var url = `https://api.lolhuman.xyz/api/creator1/${command}?apikey=${apikey}`
 				var form = new FormData()
 				form.append('img', stream, 'tahu.jpg')
-				if (command === 'removebg') {
-					url = `https://api.lolhuman.xyz/api/removebg?apikey=${apikey}`
-				}
+				axios
+					.post(url, form, { responseType: 'arraybuffer' })
+					.then(({ data }) => {
+						sock.sendMessage(from, { image: data })
+					})
+					.catch(console.error)
+				break
+			case 'removebg':
+				if (!isImage && !isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix + command} atau tag gambar yang sudah dikirim`)
+				var url = `https://api.lolhuman.xyz/api/removebg?apikey=${apikey}`
+				var form = new FormData()
+				form.append('img', stream, 'tahu.jpg')
 				axios
 					.post(url, form, { responseType: 'arraybuffer' })
 					.then(({ data }) => {
@@ -1616,10 +1654,10 @@ module.exports = async (sock, msg) => {
 		case 'wtb':
 		case 'wts':
 			break
-		default:
-			if (isCmd) {
-				reply(`Sorry bre, Command *${prefix}${command}* gak ada di menu.*`)
-			}
-			break
+		// default:
+		// 	if (isCmd) {
+		// 		reply(`Sorry bre, Command *${prefix}${command}* gak ada di menu.*`)
+		// 	}
+		// 	break
 	}
 }
