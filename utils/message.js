@@ -128,6 +128,8 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _Random Image_ ]✪──╮*
+*┃➥ ${prefix}darkjoke*
+*┃➥ ${prefix}memeindo*
 *┃➥ ${prefix}art*
 *┃➥ ${prefix}bts*
 *┃➥ ${prefix}exo*
@@ -391,6 +393,7 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _Other_ ]✪──╮*
+*┃➥ ${prefix}openai*
 *┃➥ ${prefix}ssweb*
 *┃➥ ${prefix}ssweb2*
 *┃➥ ${prefix}shortlink*
