@@ -296,6 +296,18 @@ module.exports = async (sock, msg) => {
 				})
 				.catch(console.error)
 			break
+		case 'mediafire':
+			if (args.length == 0) return reply(`Example: ${prefix + command} https://www.mediafire.com/file/1xgaov026oc44n0/photo_2021-02-05_10-13-39.jpg/file`)
+			axios
+				.get(`https://api.lolhuman.xyz/api/mediafire?apikey=${apikey}&url=${args[0]}`)
+				.then(({ data }) => {
+					var caption = `❖ Filename    : *${data.result.filename}*\n`
+					caption += `❖ Type     : *${data.result.filetype}*`
+					caption += `❖ Size     : *${data.result.filesize}*`
+					sock.sendMessage(from, { file: { url: data.result.link }, fileName: `${data.result.filename}` })
+					})
+				.catch(console.error)
+			break
 		case 'telesticker':
 			if (args.length == 0) return reply(`Example: ${prefix + command} https://t.me/addstickers/LINE_Menhera_chan_ENG`)
 			axios.get(`https://api.lolhuman.xyz/api/telestick?apikey=${apikey}&url=${args[0]}`).then(({ data }) => {
@@ -849,12 +861,12 @@ module.exports = async (sock, msg) => {
 			break
 		case 'infogempa':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/infogempa?apikey=${apikey}`)
-			var caption = `Lokasi : ${data.result.lokasi}\n`
-			caption += `Waktu : ${data.result.waktu}\n`
-			caption += `Potensi : ${data.result.potensi}\n`
-			caption += `Magnitude : ${data.result.magnitude}\n`
-			caption += `Kedalaman : ${data.result.kedalaman}\n`
-			caption += `Koordinat : ${data.result.koordinat}`
+			var caption = `*Lokasi* : ${data.result.lokasi}\n`
+			caption += `*Waktu* : ${data.result.waktu}\n`
+			caption += `*Potensi* : ${data.result.potensi}\n`
+			caption += `*Magnitude* : ${data.result.magnitude}\n`
+			caption += `*Kedalaman* : ${data.result.kedalaman}\n`
+			caption += `*Koordinat* : ${data.result.koordinat}`
 			sock.sendMessage(from, { image: { url: data.result.map }, caption })
 			break
 		case 'lirik':
@@ -873,7 +885,7 @@ module.exports = async (sock, msg) => {
 			text += `Suhu : ${data.result.suhu}\n`
 			text += `Udara : ${data.result.udara}\n`
 			text += `Permukaan laut : ${data.result.permukaan_laut}\n`
-			sock.sendMessage(from, { location: { degreesLatitude: data.result.latitude, degreesLongitude: data.result.longitude } })
+			// sock.sendMessage(from, { location: { degreesLatitude: data.result.latitude, degreesLongitude: data.result.longitude } })
 			reply(text)
 			break
 		case 'covidindo':
@@ -1641,7 +1653,7 @@ module.exports = async (sock, msg) => {
 				break
 			case 'removebg':
 				if (!isImage && !isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix + command} atau tag gambar yang sudah dikirim`)
-				var url = `https://api.lolhuman.xyz/api/removebg?apikey=${apikey}`
+				var url = `https://api.lolhuman.xyz/api/removebg?apikey=${apikey}&`
 				var form = new FormData()
 				form.append('img', stream, 'tahu.jpg')
 				axios
