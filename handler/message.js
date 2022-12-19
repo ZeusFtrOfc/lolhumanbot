@@ -1000,8 +1000,8 @@ module.exports = async (sock, msg) => {
 			caption += `City : ${data.result.city}\n`
 			caption += `As : ${data.result.as}\n`
 			caption += `Timezone : ${data.result.timezone}\n`
-			reply(caption).then (({ data }) => {
-			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
+			reply(caption).then (({ result }) => {
+			sock.sendMessage(from, { location: { degreesLatitude: lat, degreesLongitude: lon } })
 			})
 			break
 		case 'drakorongoing':
