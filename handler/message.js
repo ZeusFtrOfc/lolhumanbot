@@ -994,19 +994,15 @@ module.exports = async (sock, msg) => {
 		case 'ipaddress':
 			if (args.length == 0) return reply(`Example: ${prefix + command} 114.142.169.38`)
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/ipaddress/${args[0]}?apikey=${apikey}`)
-			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
-			break
-		case 'ipaddress':
-			if (args.length == 0) return reply(`Example: ${prefix + command} 114.142.169.38`)
-			var { data } = await axios.get(`https://api.lolhuman.xyz/api/ipaddress/${args[0]}?apikey=${apikey}`)
 			var caption = `Country : ${data.result.country}\n`
 			caption += `CountryCode : ${data.result.countryCode}\n`
 			caption += `Region : ${data.result.region}\n`
 			caption += `City : ${data.result.city}\n`
 			caption += `As : ${data.result.as}\n`
 			caption += `Timezone : ${data.result.timezone}\n`
-			reply(caption)
-			// sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
+			reply(caption).then (() => {
+			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
+			})
 			break
 		case 'drakorongoing':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/drakorongoing?apikey=${apikey}`)
