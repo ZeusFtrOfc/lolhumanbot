@@ -7,7 +7,7 @@ exports.help = (prefix) => {
 *┏━──✪[ _Bot Information_ ]✪──╮*
 *┃➥ AUTHOR : AXV*
 *┃➥ WEBSITE : https://axvdigital.com*
-*┃➥ YOUTUBE : https://www.youtube.com/@axvdigital3071
+*┃➥ YOUTUBE : https://www.youtube.com/@axvdigital3071*
 *┃➥ _HAVE FUN BREE :)..._*
 *┗━───────────────╯*
 
@@ -52,6 +52,7 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _Photo Oxy_ ]✪──╮*
+*┃➥ ${prefix}burningfire*
 *┃➥ ${prefix}shadow*
 *┃➥ ${prefix}cup*
 *┃➥ ${prefix}cup1*
@@ -125,6 +126,8 @@ exports.help = (prefix) => {
 *┃➥ ${prefix}wolflogo*
 *┃➥ ${prefix}steel3d*
 *┃➥ ${prefix}wallgravity*
+*┃➥ ${prefix}ohno*
+*┃➥ ${prefix}changemymind*
 *┗━───────────────╯*
 
 *┏━──✪[ _Random Image_ ]✪──╮*
@@ -257,6 +260,7 @@ exports.help = (prefix) => {
 *┃➥ ${prefix}pinterest2*
 *┃➥ ${prefix}pinterestdl*
 *┃➥ ${prefix}pixiv*
+*┃➥ ${prefix}mediafire*
 *┃➥ ${prefix}pixivdl*
 *┗━───────────────╯*
 
@@ -272,6 +276,7 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _Information_ ]✪──╮*
+*┃➥ ${prefix}ipaddress*
 *┃➥ ${prefix}kbbi*
 *┃➥ ${prefix}brainly*
 *┃➥ ${prefix}robotguru*
@@ -279,7 +284,6 @@ exports.help = (prefix) => {
 *┃➥ ${prefix}cuaca*
 *┃➥ ${prefix}urbandictionary*
 *┃➥ ${prefix}heroml*
-*┃➥ ${prefix}mlstalk*
 *┃➥ ${prefix}genshin*
 *┃➥ ${prefix}qrreader*
 *┃➥ ${prefix}wikipedia*
@@ -325,6 +329,7 @@ exports.help = (prefix) => {
 
 *┏━──✪[ _Random Text_ ]✪──╮*
 *┃➥ ${prefix}quotes*
+*┃➥ ${prefix}quotesislami*
 *┃➥ ${prefix}quotesanime*
 *┃➥ ${prefix}quotesdilan*
 *┃➥ ${prefix}faktaunik*
@@ -347,6 +352,7 @@ exports.help = (prefix) => {
 *┃➥ ${prefix}stalkgithub*
 *┃➥ ${prefix}stalktwitter*
 *┃➥ ${prefix}stalktiktok*
+*┃➥ ${prefix}mlstalk*
 *┗━───────────────╯*
 
 *┏━──✪[ _Filter_ ]✪──╮*
