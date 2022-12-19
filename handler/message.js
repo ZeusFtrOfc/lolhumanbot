@@ -304,7 +304,7 @@ module.exports = async (sock, msg) => {
 					var caption = `❖ Filename    : *${data.result.filename}*\n`
 					caption += `❖ Type     : *${data.result.filetype}*`
 					caption += `❖ Size     : *${data.result.filesize}*`
-					sock.sendMessage(from, { file: { url: data.result.link }, fileName: `${data.result.filename}` })
+					sock.sendMessage(from, { document: { url: data.result.link }, fileName: `${data.result.filename}` })
 					})
 				.catch(console.error)
 			break
@@ -830,10 +830,10 @@ module.exports = async (sock, msg) => {
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/cnnindonesia?apikey=${apikey}`)
 			var text = 'Result :\n'
 			for (var x of data.result) {
-				text += `Judul : ${x.judul}\n`
-				text += `Link : ${x.link}\n`
-				text += `Tipe : ${x.tipe}\n`
-				text += `Published : ${x.waktu}\n\n`
+				text += `*Judul* : ${x.judul}\n`
+				text += `*Link* : ${x.link}\n`
+				text += `*Tipe* : ${x.tipe}\n`
+				text += `*Published* : ${x.waktu}\n\n`
 			}
 			reply(text)
 			break
@@ -841,10 +841,10 @@ module.exports = async (sock, msg) => {
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/cnnindonesia/nasional?apikey=${apikey}`)
 			var text = 'Result :\n'
 			for (var x of data.result) {
-				text += `Judul : ${x.judul}\n`
-				text += `Link : ${x.link}\n`
-				text += `Tipe : ${x.tipe}\n`
-				text += `Published : ${x.waktu}\n\n`
+				text += `*Judul* : ${x.judul}\n`
+				text += `*Link* : ${x.link}\n`
+				text += `*Tipe* : ${x.tipe}\n`
+				text += `*Published* : ${x.waktu}\n\n`
 			}
 			reply(text)
 			break
@@ -852,10 +852,10 @@ module.exports = async (sock, msg) => {
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/cnnindonesia/internasional?apikey=${apikey}`)
 			var text = 'Result :\n'
 			for (var x of data.result) {
-				text += `Judul : ${x.judul}\n`
-				text += `Link : ${x.link}\n`
-				text += `Tipe : ${x.tipe}\n`
-				text += `Published : ${x.waktu}\n\n`
+				text += `*Judul* : ${x.judul}\n`
+				text += `*Link* : ${x.link}\n`
+				text += `*Tipe* : ${x.tipe}\n`
+				text += `*Published* : ${x.waktu}\n\n`
 			}
 			reply(text)
 			break
@@ -990,6 +990,18 @@ module.exports = async (sock, msg) => {
 			caption += `Language : ${data.result.language}\n`
 			caption += `Link Download : ${data.result.link_dl}`
 			sock.sendMessage(from, { image: { url: data.result.thumbnail }, caption })
+			break
+		case 'ipaddress':
+			if (args.length == 0) return reply(`Example: ${prefix + command} 114.142.169.38`)
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/ipaddress/${args[0]}?apikey=${apikey}`)
+			var caption = `Country : ${data.result.country}\n`
+			caption += `CountryCode : ${data.result.countryCode}\n`
+			caption += `Region : ${data.result.region}\n`
+			caption += `City : ${data.result.city}\n`
+			caption += `As : ${data.result.as}\n`
+			caption += `Timezone : ${data.result.timezone}\n`
+			reply(caption)
+			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
 			break
 		case 'drakorongoing':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/drakorongoing?apikey=${apikey}`)
@@ -1132,6 +1144,10 @@ module.exports = async (sock, msg) => {
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/random/${command}?apikey=${apikey}`)
 			reply(data.result)
 			break
+		case 'quotesislami':
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/quotes/islami?apikey=${apikey}`)
+			reply(data.result)
+			break
 		case 'randomnama':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/random/nama?apikey=${apikey}`)
 			reply(data.result)
@@ -1237,9 +1253,10 @@ module.exports = async (sock, msg) => {
 			}
 			if (command === 'stickerwm') {
 				url = `https://api.lolhuman.xyz/api/convert/towebpauthor?apikey=${apikey}`
-				form.append('package', 'AXV')
-				form.append('author', 'DIGITAL')
-			}
+				form.append('package', 'Creator :')
+				form.append('author', 'AXV-Bot')
+			} 
+			// || command === 'sticker' || command === 'stiker' || command === 's'
 
 			axios
 				.post(url, form, { responseType: 'arraybuffer' })
@@ -1511,6 +1528,11 @@ module.exports = async (sock, msg) => {
 			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
 			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/textprome/${command}?apikey=${apikey}&text=${full_args}` } })
 			break
+		case 'ohno':
+		case 'changemymind':
+			if (args.length == 0) return reply(`Example: ${prefix + command} AXV`)
+			sock.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/creator/${command}?apikey=${apikey}&text=${full_args}` } })
+			break
 		case 'ramadhan':
 		case 'amongus':
 		case 'carbon':
@@ -1648,6 +1670,18 @@ module.exports = async (sock, msg) => {
 					.post(url, form, { responseType: 'arraybuffer' })
 					.then(({ data }) => {
 						sock.sendMessage(from, { image: data })
+					})
+					.catch(console.error)
+				break
+		case 'burningfire':
+				if (!isImage && !isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix + command} atau tag gambar yang sudah dikirim`)
+				var url = `https://api.lolhuman.xyz/api/photofunia/burningfire?apikey=${apikey}`
+				var form = new FormData()
+				form.append('img', stream, 'tahu.jpg')
+				axios
+					.post(url, form, { responseType: 'arraybuffer' })
+					.then(({ data }) => {
+						sock.sendMessage(from, { video: data })
 					})
 					.catch(console.error)
 				break
