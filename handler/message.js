@@ -1001,8 +1001,9 @@ module.exports = async (sock, msg) => {
 			caption += `As : ${data.result.as}\n`
 			caption += `Timezone : ${data.result.timezone}\n`
 			// reply(caption)
-			sock.sendMessage(from, { reply: { caption } })
+			// sock.sendMessage(from, { Text: { caption } })
 			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
+			reply(caption)
 			break
 		case 'drakorongoing':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/drakorongoing?apikey=${apikey}`)
