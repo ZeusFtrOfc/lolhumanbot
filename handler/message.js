@@ -1000,8 +1000,9 @@ module.exports = async (sock, msg) => {
 			caption += `City : ${data.result.city}\n`
 			caption += `As : ${data.result.as}\n`
 			caption += `Timezone : ${data.result.timezone}\n`
-			reply(caption)
+			reply(caption).then (({ data }) => {
 			sock.sendMessage(from, { location: { degreesLatitude: data.result.lat, degreesLongitude: data.result.lon } })
+			})
 			break
 		case 'drakorongoing':
 			var { data } = await axios.get(`https://api.lolhuman.xyz/api/drakorongoing?apikey=${apikey}`)
@@ -1679,7 +1680,7 @@ module.exports = async (sock, msg) => {
 				var form = new FormData()
 				form.append('img', stream, 'tahu.jpg')
 				axios
-					.post(url, form, { responseType: 'arraybuffer' })
+					.get(url, form, { responseType: 'arraybuffer' })
 					.then(({ data }) => {
 						sock.sendMessage(from, { video: data })
 					})
