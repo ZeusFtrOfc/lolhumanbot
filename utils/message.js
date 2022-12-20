@@ -265,6 +265,7 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _AniManga_ ]✪──╮*
+*┃➥ ${prefix}storynime*
 *┃➥ ${prefix}character*
 *┃➥ ${prefix}manga*
 *┃➥ ${prefix}anime*
@@ -356,6 +357,7 @@ exports.help = (prefix) => {
 *┗━───────────────╯*
 
 *┏━──✪[ _Filter_ ]✪──╮*
+*┃➥ ${prefix}imagetoanime*
 *┃➥ ${prefix}1977*
 *┃➥ ${prefix}aden*
 *┃➥ ${prefix}brannan*
