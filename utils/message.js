@@ -8,6 +8,7 @@ exports.help = (prefix) => {
 *┃➥ AUTHOR : AXV*
 *┃➥ WEBSITE : https://axvdigital.com*
 *┃➥ YOUTUBE : https://www.youtube.com/@axvdigital3071*
+*┃➥ GROUP :https://chat.whatsapp.com/K7CyWPZ3fpq30bRziLLMrm*
 *┃➥ _HAVE FUN BREE :)..._*
 *┗━───────────────╯*
 
