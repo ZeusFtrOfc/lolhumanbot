@@ -35,13 +35,13 @@ const connect = async () => {
 	})
 	store.bind(sock.ev)
 
-	sock.ev.on('chats.set', () => {
-		console.log('got chats', store.chats.all().length)
-	})
+	// sock.ev.on('chats.set', () => {
+	// 	console.log('got chats', store.chats.all().length)
+	// })
 
-	sock.ev.on('contacts.set', () => {
-		console.log('got contacts', Object.values(store.contacts).length)
-	})
+	// sock.ev.on('contacts.set', () => {
+	// 	console.log('got contacts', Object.values(store.contacts).length)
+	// })
 
 	sock.ev.on('creds.update', saveCreds)
 	sock.ev.on('connection.update', async (up) => {
