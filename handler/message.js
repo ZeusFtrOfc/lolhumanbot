@@ -126,7 +126,7 @@ module.exports = async (sock, msg) => {
 	if (isGroup && isCmd) console.log(color(`[ ${time} ]`, 'white'), color('[ COMMAND ]', 'aqua'), color(body, 'white'), 'from', color(senderNumber, 'yellow'), 'in', color(groupName, 'yellow'))
 
 	const reply = async (text) => {
-		return sock.sendMessage(from, { text: text.trim() }, { quoted: msg })
+		return sock.sendMessage(from, { text: text ? text.trim() : "" }, { quoted: msg })
 	}
 
 
@@ -887,7 +887,7 @@ module.exports = async (sock, msg) => {
 			break
 		case 'lirik':
 			if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
-			var { data } = await axios.get(`https://api.lolhuman.xyz/api/lirik?apikey=${apikey}&query=${full_args}`)
+			var { data } = await axios.get(`https://api.lolhuman.xyz/api/lirik?apikey=${apikey}&query=${args[0]}`)
 			reply(data.result)
 			break
 		case 'cuaca':
