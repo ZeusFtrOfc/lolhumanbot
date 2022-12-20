@@ -150,6 +150,7 @@ module.exports = async (sock, msg) => {
 		case 'help':
 		case 'menu':
 			reply(help(prefix))
+			reply(limit)
 			break
 
 		// Islami //
